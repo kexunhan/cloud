@@ -12,12 +12,7 @@
     <artifactId>nacos-config-client3377</artifactId>
 
     <dependencies>
-        <!--引入自己的公共api-->
-        <dependency>
-            <groupId>com.wxh.springcloud</groupId>
-            <artifactId>cloud-api-commons</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
