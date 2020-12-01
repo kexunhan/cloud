@@ -1,0 +1,4 @@
+# Project exclude paths
+/nacos9001/target/
+/nacos9002/target/
+/nacos-config-client3377/target/
