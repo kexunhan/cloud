@@ -12,6 +12,7 @@
         <module>nacos9001</module>
         <module>nacos9002</module>
         <module>nacos-config-client3377</module>
+        <module>sentinel8401</module>
 
 
     </modules>

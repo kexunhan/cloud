@@ -1,0 +1,13 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloud-alibaba-sentinel-service
+    sentinel:
+      transport:
+        # 配置sentinel dashboard地址
+        dashboard: localhost:8080
+        # 默认 8719端口，假如被占用从8719开始+1扫描直到直到未被占用的端口
+        port: 8719
+
