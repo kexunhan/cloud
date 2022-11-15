@@ -11,7 +11,9 @@ spring:
       config:
         server-addr: localhost:8848 # 服务注册中心
         file-extension: yaml # 指定yaml格式的配置
-       # group: DEV_GROUP
+#        group: DEV_GROUP
+#        指定命名空间
+#        namespace: 19a4df87-f438-4c03-b326-6a8033008542
 
 
 # ${spring.application.name}-${spring.profiles.active}.${file-extension}
