@@ -1,0 +1,20 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由的功能，使用服务名称去访问
+      routes:
+        - id: cloud-gateway1   # 路由的ID
+#          uri: http://127.0.0.1:9001
+          uri: lb://nacos-provider/
+          predicates:    # 断言
+            - Path=/payment/nacos/**

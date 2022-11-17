@@ -2,3 +2,8 @@
 /nacos9001/target/
 /nacos9002/target/
 /nacos-config-client3377/target/
+.idea
+*.iml
+.idea
+.gitignore
+/*/.iml
