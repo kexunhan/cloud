@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: cloud-alibaba-sentinel-service
+  cloud:
     sentinel:
       transport:
         # 配置sentinel dashboard地址
