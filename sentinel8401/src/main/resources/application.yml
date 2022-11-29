@@ -6,9 +6,17 @@ spring:
     name: cloud-alibaba-sentinel-service
   cloud:
     sentinel:
+      # sentinel的延迟加载，自由在调用一次请求才会加载
+      eager: true
       transport:
         # 配置sentinel dashboard地址
-        dashboard: localhost:8080
+        dashboard: 127.0.0.1:8080
         # 默认 8719端口，假如被占用从8719开始+1扫描直到直到未被占用的端口
         port: 8719
+
+
+    # nacos 注册配置
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
