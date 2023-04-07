@@ -1,0 +1,6 @@
+server:
+  port: 9008
+
+spring:
+  redis:
+    password: root.123

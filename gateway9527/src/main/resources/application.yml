@@ -15,6 +15,6 @@ spring:
       routes:
         - id: cloud-gateway1   # 路由的ID
 #          uri: http://127.0.0.1:9001
-          uri: lb://nacos-provider/
+          uri: lb://nacos-provider
           predicates:    # 断言
             - Path=/payment/nacos/**

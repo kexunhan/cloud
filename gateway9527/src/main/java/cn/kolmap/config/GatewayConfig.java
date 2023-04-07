@@ -11,6 +11,6 @@ public class GatewayConfig {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("route_guonei_route", r -> r.path("/guonei").uri("http://news.baidu.com/guonei")).build();
+                .route("route_guonei_route", r -> r.path("/ch/finance").uri("https://new.qq.com/ch/finance")).build();
     }
 }

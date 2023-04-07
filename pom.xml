@@ -16,7 +16,8 @@
         <module>gateway9527</module>
         <module>elasticsearch9333</module>
         <module>knife4j8888</module>
-        <module>thread8801</module>
+        <module>redisson-9008</module>
+
     </modules>
 
 
