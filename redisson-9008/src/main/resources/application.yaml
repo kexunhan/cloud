@@ -4,3 +4,7 @@ server:
 spring:
   redis:
     password: root.123
+    masterAddress : redis://127.0.0.1:6379
+    slaveAddresses:
+      - redis://127.0.0.1:6380
+      - redis://127.0.0.1:6380

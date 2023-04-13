@@ -1,5 +1,9 @@
 package cn.kolmap;
 
+import org.redisson.Redisson;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +14,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Redisson9008Application {
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(Redisson9008Application.class, args);
+
     }
+
+
+
 }
