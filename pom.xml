@@ -17,7 +17,7 @@
         <module>elasticsearch9333</module>
         <module>knife4j8888</module>
         <module>redisson-9008</module>
-
+        <module>exercise-9999</module>
     </modules>
 
 
