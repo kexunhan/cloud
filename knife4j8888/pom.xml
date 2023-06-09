@@ -16,11 +16,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+
 
         <!--引入Knife4j的官方start包,Swagger2基于Springfox2.10.5项目-->
         <dependency>
