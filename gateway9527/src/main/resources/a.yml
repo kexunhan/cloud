@@ -1,0 +1,75 @@
+server:
+  #此处的8084端口号,就好像以前外置的tomcat的8080,让我们通过浏览器进行访问
+  #但此服务只是做了一个路由,它会将请求路由到其它微服务(一般是消费者)进行处理
+  port: 8085
+
+spring:
+  application:
+    #微服务名
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        #指定nacos注册中心的地址
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          #是否与服务发现组件进行结合,通过service-id(必须设置成大写)转发到具体的服务实例。默认false
+          #为true代表开启基于服务发现的路由规则。
+          enabled: false
+          #配置之后访问时service-id无需大写
+          lower-case-service-id: true
+      routes:
+        # 路由标识(id：标识,具有唯一性)
+        - id: user-consumer-api
+          #目标服务地址(uri：地址,请求转发后的地址),会自动从注册中心获得服务的IP,不需要手动写死
+          uri: lb://consumer
+          #优先级,越小越优先
+          #order: 999
+          #路由条件(predicates：断言)
+          predicates:
+            # 路径匹配,
+            - Path=/cum/**
+          filters:
+            #路径前缀删除示例：请求/name/bar/foo,StripPrefix=2,去除掉前面两个前缀之后,最后转发到目标服务的路径为/foo
+            #前缀过滤,请求地址：http://localhost:8084/usr/hello
+            #此处配置去掉1个路径前缀,再配置上面的 Path=/usr/**,就将**转发到指定的微服务
+            #因为这个api相当于是服务名,只是为了方便以后nginx的代码加上去的,对于服务提供者service-client来说,不需要这段地址,所以需要去掉
+            - StripPrefix=1
+        # 路由标识(id：标识,具有唯一性)
+        - id: user-provider-api
+          #目标服务地址(uri：地址,请求转发后的地址),会自动从注册中心获得服务的IP,不需要手动写死
+          uri: lb://provider
+          #优先级,越小越优先
+          #order: 999
+          #路由条件(predicates：断言)
+          predicates:
+            # 路径匹配,
+            - Path=/api/pro/**
+          filters:
+            #路径前缀删除示例：请求/name/bar/foo,StripPrefix=2,去除掉前面两个前缀之后,最后转发到目标服务的路径为/foo
+            #前缀过滤,请求地址：http://localhost:8084/usr/hello
+            #此处配置去掉1个路径前缀,再配置上面的 Path=/usr/**,就将**转发到指定的微服务
+            #因为这个api相当于是服务名,只是为了方便以后nginx的代码加上去的,对于服务提供者service-client来说,不需要这段地址,所以需要去掉
+            - StripPrefix=2
+logging:
+  level:
+    #开启spring-Cloud-gateway的日志级别为debug,方便debug调试
+    org.springframework.cloud.gateway: trace
+    org.springframework.http.server.reactive: debug
+    org.springframework.web.reactive: debug
+    reactor.ipc.netty: debug
+#springboot监控Actuator,暴露所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#自定义配置
+gateway:
+  nacos:
+    server-addr: ${spring.cloud.nacos.discovery.server-addr}
+    # namespace: xxx-xx-xx-xx
+    data-id: dynamic-routing.json
+    group: DEFAULT_GROUP

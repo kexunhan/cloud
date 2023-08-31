@@ -1,0 +1,8 @@
+server:
+  port: 8023
+
+spring:
+  security:
+    user:
+      password: root
+      name: root
