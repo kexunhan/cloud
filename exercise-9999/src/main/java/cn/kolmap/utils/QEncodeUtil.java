@@ -2,7 +2,6 @@ package cn.kolmap.utils;
 
 import cn.hutool.http.HttpRequest;
 import com.alibaba.fastjson2.JSONObject;
-import lombok.Data;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -102,18 +101,18 @@ public class QEncodeUtil {
          dataSecretIv:e9c66b9eeedacb40
          */
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("orgId","HUAYUN1036");
-        jsonObject.put("orgSecret","62c03d227f4af930");
+        jsonObject.put("orgId", "HUAYUN1036");
+        jsonObject.put("orgSecret", "62c03d227f4af930");
         System.out.println(JSONObject.toJSONString(jsonObject));
         String e9c66b9eeedacb40 = encrypt(JSONObject.toJSONString(jsonObject), "763b74f42ca165d5", "e9c66b9eeedacb40");
 
         System.out.println(e9c66b9eeedacb40);
         JSONObject jsonObject1 = new JSONObject();
-        jsonObject1.put("data",e9c66b9eeedacb40);
+        jsonObject1.put("data", e9c66b9eeedacb40);
 
         String body = HttpRequest.post("http://121.37.152.25:8085/load/control/queryToken").body(JSONObject.toJSONString(jsonObject1)).execute().body();
         System.out.println(body);
-        String  responseData = (String) JSONObject.parseObject(body).get("data");
+        String responseData = (String) JSONObject.parseObject(body).get("data");
         String e9c66b9eeedacb401 = decrypt(responseData, "763b74f42ca165d5", "e9c66b9eeedacb40");
         System.out.println(e9c66b9eeedacb401);
 
@@ -121,16 +120,16 @@ public class QEncodeUtil {
         JSONObject jsonObject3 = new JSONObject();
 
 //        jsonObject3.put("lastQueryTime","2023-06-10 00:00:00");
-        jsonObject3.put("pageNo",1);
-        jsonObject3.put("pageSize",1);
+        jsonObject3.put("pageNo", 1);
+        jsonObject3.put("pageSize", 1);
 
 
         String jsonString = JSONObject.toJSONString(jsonObject3);
         System.out.println(jsonString);
         String d = encrypt(jsonString, "763b74f42ca165d5", "e9c66b9eeedacb40");
         JSONObject jsonObject2 = new JSONObject();
-        jsonObject2.put("data",d);
-        jsonObject2.put("orgId","HUAYUN1036");
+        jsonObject2.put("data", d);
+        jsonObject2.put("orgId", "HUAYUN1036");
         System.out.println(JSONObject.toJSONString(jsonObject2));
         String accessToken1 = JSONObject.parseObject(e9c66b9eeedacb401).getString("accessToken");
         System.out.println(accessToken1);
